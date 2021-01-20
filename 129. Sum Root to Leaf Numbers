@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int res = 0;
+    void solve(TreeNode* root,string a){
+        if(!root){
+            return;
+        }
+        char anlik = root->val + '0';
+        a += anlik;
+        if(!root->left && !root->right){
+            res += stoi(a);
+            return;
+        }
+        solve(root->left,a);
+        solve(root->right,a);
+    }
+    int sumNumbers(TreeNode* root) {
+        if(!root){
+            return 0;
+        }
+        solve(root,"");
+        return res;
+    }
+};
